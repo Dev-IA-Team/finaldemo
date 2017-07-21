@@ -254,13 +254,13 @@ input:-moz-placeholder {
   color: #fff;
   overflow-x: auto;
 
-  width: 45%;
-  max-width: 32.0625rem;
-  min-width: 29.6875rem;
+  width: 0%;
+  max-width: 0rem;
+  min-width: 0rem;
 }
 
 #payload-column.full {
-  width: 100%;
+  width: 0%;
   max-width: none;
   min-width: initial;
 }

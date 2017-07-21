@@ -1,15 +1,15 @@
 ---
 declared-services:
-  my-conversation-service:
+  Devo-conv:
     label: conversation
     plan: free
 applications:
-- name: conversation-simple
+- name: devoconv
   command: npm start
   path: .
   memory: 256M
   instances: 1
   services:
-  - my-conversation-service
+  - Devo-conv
   env:
     NPM_CONFIG_PRODUCTION: false
