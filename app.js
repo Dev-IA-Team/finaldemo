@@ -16,6 +16,8 @@
 
 'use strict';
 var http = require("https");
+//var request = require("request");
+//var sleep = require('sleep');
 var express = require('express'); // app server
 var bodyParser = require('body-parser'); // parser for post requests
 var Conversation = require('watson-developer-cloud/conversation/v1'); // watson sdk
@@ -79,22 +81,321 @@ console.log("test-moi");
 	console.log(response.entities[0].entity);
 }
 
-if (response.entities.length > 0 && response.entities[0].entity === 'Oui-Non' && response.context.incident_var === true){
+if (response.context.short_desc_Json !== "" ){
+var short_desc_http = response.context.short_desc_Json;
+}
+
+	  //ouvre un ticket
+	  
+if ( response.context.incident_var === true ){
 
 
 var options = {
+ "method": "POST",
+ "hostname": "dev37615.service-now.com",
+ "port": null,
+ "path": "/api/now/table/incident",
+ "headers": {
+   "accept": "application/json",
+   "content-type": "application/json",
+   "authorization": "Basic YWRtaW46Z1VHcFdwS3pQcEV5",
+   "cache-control": "no-cache",
+   "postman-token": "9a16c542-1154-e7a1-efba-995554f65aa8"
+ }
+};
+var http = require("https");
+var req = http.request(options, function (res) {
+ var chunks = [];
+
+ res.on("data", function (chunk) {
+   chunks.push(chunk);
+ });
+
+ res.on("end", function () {
+   var body = Buffer.concat(chunks);
+   console.log(body.toString());
+ });
+});
+
+var urgency_var_Json = response.context.urgency_var ;
+
+/* var short_desc_http = response.context.short_desc_Json ; */
+ 
+
+
+req.write(JSON.stringify({short_description : short_desc_http , urgency : urgency_var_Json }));
+
+
+
+/* req.write(JSON.stringify(data_to_send_json)); */
+req.end();
+
+	/* response.output.text = "Incident créé"; */
+	
+response.context.incident_var = false;
+  return response;
+	
+}
+	  // Description + Email outlook 2007 non utile 
+
+if(response.context.desc_first_msg_incident !== "" ){
+
+	var desc_var_bis_Json = response.context.desc_first_msg_incident;
+}
+
+	  if(response.context.incident_var_bis === true){
+		  		
+	  
+var options = {
+ "method": "POST",
+ "hostname": "dev37615.service-now.com",
+ "port": null,
+ "path": "/api/now/table/incident",
+ "headers": {
+   "accept": "application/json",
+   "content-type": "application/json",
+   "authorization": "Basic YWRtaW46Z1VHcFdwS3pQcEV5",
+   "cache-control": "no-cache",
+   "postman-token": "9a16c542-1154-e7a1-efba-995554f65aa8"
+ }
+};
+var http = require("https");
+var req = http.request(options, function (res) {
+ var chunks = [];
+
+ res.on("data", function (chunk) {
+   chunks.push(chunk);
+ });
+
+ res.on("end", function () {
+   var body = Buffer.concat(chunks);
+   console.log(body.toString());
+ });
+});
+
+// var desc_var_bis_Json = response.context.short_desc_Json_bis ;
+
+/* var short_desc_http = response.context.short_desc_Json ; */
+ 
+
+
+req.write(JSON.stringify({short_description : desc_var_bis_Json, subcategory : 'Email Outlook 2007' }));
+
+
+
+/* req.write(JSON.stringify(data_to_send_json)); */
+req.end();
+
+	/* response.output.text = "Incident créé"; */
+
+response.context.incident_var_bis = false;
+ desc_var_bis_Json = "";
+	
+  return response;
+  	
+	  }
+	  
+	 
+	/*  
+	  	  // 2007 Email 
+	  if(response.context.incident_var_ter === true ){
+		  		
+	  
+var options = {
+ "method": "POST",
+ "hostname": "dev37615.service-now.com",
+ "port": null,
+ "path": "/api/now/table/incident",
+ "headers": {
+   "accept": "application/json",
+   "content-type": "application/json",
+   "authorization": "Basic YWRtaW46Z1VHcFdwS3pQcEV5",
+   "cache-control": "no-cache",
+   "postman-token": "9a16c542-1154-e7a1-efba-995554f65aa8"
+ }
+};
+
+var req = http.request(options, function (res) {
+ var chunks = [];
+
+ res.on("data", function (chunk) {
+   chunks.push(chunk);
+ });
+
+ res.on("end", function () {
+   var body = Buffer.concat(chunks);
+   console.log(body.toString());
+ });
+});
+
+
+// var short_desc_http = response.context.short_desc_Json ;
+ 
+
+
+req.write(JSON.stringify({ subcategory : 'Email Outlook 2007' }));
+
+
+
+// req.write(JSON.stringify(data_to_send_json)); 
+req.end();
+
+	// response.output.text = "Incident créé"; 
+
+response.context.incident_var_ter = false;
+	
+  return response;
+  	
+	  }
+	  
+	  
+	  
+	  */
+	  
+	  
+	  // incident outlook 2010
+	  
+	  
+	  
+ if(response.context.incident_var_quat === true){
+		  		
+	  
+var options = {
+ "method": "POST",
+ "hostname": "dev37615.service-now.com",
+ "port": null,
+ "path": "/api/now/table/incident",
+ "headers": {
+   "accept": "application/json",
+   "content-type": "application/json",
+   "authorization": "Basic YWRtaW46Z1VHcFdwS3pQcEV5",
+   "cache-control": "no-cache",
+   "postman-token": "9a16c542-1154-e7a1-efba-995554f65aa8"
+ }
+};
+var http = require("https");
+var req = http.request(options, function (res) {
+ var chunks = [];
+
+ res.on("data", function (chunk) {
+   chunks.push(chunk);
+ });
+
+ res.on("end", function () {
+   var body = Buffer.concat(chunks);
+   console.log(body.toString());
+ });
+});
+
+
+
+ // var short_desc_http2 = response.context.incident_desc_quat ;
+ 
+
+
+req.write(JSON.stringify({ short_description :  desc_var_bis_Json  , subcategory : 'Email Outlook 2010' }));
+
+
+
+/* req.write(JSON.stringify(data_to_send_json)); */
+req.end();
+
+	/* response.output.text = "Incident créé"; */
+
+response.context.incident_var_quat = false;
+	 desc_var_bis_Json = "";
+  return response;
+  	
+	  }
+	  	  
+	  
+	  
+	  
+	  
+	  
+	  
+ /*
+	  if(response.context.incident_var_quin === true ){
+		  		
+	  
+var options = {
+ "method": "POST",
+ "hostname": "dev37615.service-now.com",
+ "port": null,
+ "path": "/api/now/table/incident",
+ "headers": {
+   "accept": "application/json",
+   "content-type": "application/json",
+   "authorization": "Basic YWRtaW46Z1VHcFdwS3pQcEV5",
+   "cache-control": "no-cache",
+   "postman-token": "9a16c542-1154-e7a1-efba-995554f65aa8"
+ }
+};
+
+var req = http.request(options, function (res) {
+ var chunks = [];
+
+ res.on("data", function (chunk) {
+   chunks.push(chunk);
+ });
+
+ res.on("end", function () {
+   var body = Buffer.concat(chunks);
+   console.log(body.toString());
+ });
+}); 
+
+
+
+// var short_desc_http = response.context.short_desc_Json ; 
+ 
+
+
+req.write(JSON.stringify({ subcategory : 'Email Outlook 2010' }));
+
+
+
+// req.write(JSON.stringify(data_to_send_json)); 
+req.end();
+
+	// response.output.text = "Incident créé"; 
+
+response.context.incident_var_quin = false;
+
+	
+  return response;
+  	
+	  }  */
+	  
+	  
+// -----------------------------------------------------------------------------------------------------------	  
+// incident partage réseau
+
+
+
+if( response.context.$net_share !== ""){
+
+var path_net_share =  response.context.$net_share ;
+
+}
+
+if( response.context.incident_var_net_share === true){
+
+var http = require("https");
+
+var options = {
   "method": "POST",
-  "hostname": "dev34425.service-now.com",
+  "hostname": "dev37615.service-now.com",
   "port": null,
-  "path": "/api/now/table/u_bot_table",
+  "path": "/api/now/table/incident",
   "headers": {
     "accept": "application/json",
     "content-type": "application/json",
-    "authorization": "Basic U2FkbWluOlNhZG1pbg==",
+    "authorization": "Basic YWRtaW46Z1VHcFdwS3pQcEV5",
     "cache-control": "no-cache",
-    "postman-token": "07bff158-4938-d031-85c2-6b11103ea0f4"
+    "postman-token": "1687c9b2-499e-567c-83f7-f8a505de09b5"
   }
-}; 
+};
 
 var req = http.request(options, function (res) {
   var chunks = [];
@@ -109,15 +410,204 @@ var req = http.request(options, function (res) {
   });
 });
 
+req.write(JSON.stringify({ short_description: response.context.$OS_vers + path_net_share,
+  subcategory: 'net_share' }));
 req.end();
 
-	 response.output.text = "Incident créé";
-  return response;
-	
-}
-	
+response.context.incident_var_net_share = "";
+path_net_share = "";
+response.context.$OS_ver ="";
+
+
 }
 
+// Visio
+
+if( response.context.$post_number !== ""){
+
+var number_of_post = response.context.$post_number;
+} 
+
+if( response.context.request_var === true ){
+
+
+
+var options = {
+  "method": "POST",
+  "hostname": "dev37615.service-now.com",
+  "port": null,
+  "path": "/api/now/table/u_requested_bot_item",
+  "headers": {
+    "accept": "application/json",
+    "content-type": "application/json",
+    "authorization": "Basic YWRtaW46Z1VHcFdwS3pQcEV5",
+    "cache-control": "no-cache",
+    "postman-token": "433ad096-50b1-b2c4-6fac-d5f414aead24"
+  }
+};
+var http = require("https");
+var req = http.request(options, function (res) {
+  var chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    var body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
+});
+
+req.write(JSON.stringify({ u_post_number: number_of_post, u_typeof_asset: 'MS Visio' }));
+req.end();
+
+//response.context.os_v = "";
+response.context.$postnumber = "";
+ response.context.request_var = false ; 
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	  // aucune detection de outlook subcat
+	  var parsed_var;
+		var var_to_parse;
+		var numero;
+	  
+	   if(response.context.incident_var_quin === true){
+		  		
+	  
+var options = {
+ "method": "POST",
+ "hostname": "dev37615.service-now.com",
+ "port": null,
+ "path": "/api/now/table/incident",
+ "headers": {
+   "accept": "application/json",
+   "content-type": "application/json",
+   "authorization": "Basic YWRtaW46Z1VHcFdwS3pQcEV5",
+   "cache-control": "no-cache",
+   "postman-token": "9a16c542-1154-e7a1-efba-995554f65aa8"
+ }
+};
+var http = require("https");
+var req = http.request(options, function (res) {
+ var chunks = [];
+
+ res.on("data", function (chunk) {
+   chunks.push(chunk);
+ });
+
+ res.on("end", function () {
+
+
+	console.log("Test function hello");
+	var body = Buffer.concat(chunks);
+	//console.log(body.result.number.toString());
+	 var_to_parse = body;
+	console.log(typeof var_to_parse);
+
+	 parsed_var = JSON.parse(var_to_parse);
+	numero = parsed_var.result.number;
+	
+	
+	console.log(body.toString());
+	console.log(numero);
+
+	
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+// return var_to_parse
+ ;});
+});
+
+
+ // var short_desc_var_six_Json = response.context.short_desc_var_six ; 
+ 
+
+
+req.write(JSON.stringify({ short_description: desc_var_bis_Json, subcategory : 'Email Other' }));
+
+
+
+/* req.write(JSON.stringify(data_to_send_json)); */
+req.end();
+
+	/* response.output.text = "Incident créé"; */
+
+response.context.incident_var_quin = false;
+desc_var_bis_Json = "";
+
+//console.log( typeof response);
+
+//parsed_var = stringify(parsed_var);
+
+//console.log(parsed_var);
+// sleep.sleep(8);
+//response.output.text = "Votre incident a été référencé dans SNOW sous :" + var_to_parse;
+
+// console.log( typeof response);
+//setTimeout(function(){req.end();},10000);
+//response.output.text = numero;
+console.log("trace1");
+//var blabla = 'toto';
+console.log("trace2");
+//response = blabla;
+console.log("trace3");
+  return response.output.text;
+  	
+	  }
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+}
+/*if(numero !== "" && typeof numero !== "undefined"){
+setTimeout(function(){ req.end();},10000);
+response.output.text = "Voila votre numéro d'incident : " + numero;
+} */
   return response;
 }
 module.exports = app;
